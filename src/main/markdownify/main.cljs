@@ -12,7 +12,7 @@
    (js/clearTimeout @flash-timeout)
    (reset! flash-message text)
    (reset! flash-timeout
-     (js/setTimeout #(reset! flash-message nil) ms))))
+           (js/setTimeout #(reset! flash-message nil) ms))))
 
 (defonce text-state (reagent/atom {:format :md
                                    :value ""}))
@@ -36,7 +36,7 @@
 (defn copy-to-clipboard [s]
   (let [el (.createElement js/document "textarea")
         selected (when (pos? (-> js/document .getSelection .-rangeCount))
-                             (-> js/document .getSelection (.getRangeAt 0 )))]
+                   (-> js/document .getSelection (.getRangeAt 0)))]
     (set! (.-value el) s)
     (.setAttribute el "readonly" "")
     (set! (-> el .-style .-position) "absolute")
@@ -96,7 +96,7 @@
      [:textarea
       {:on-change (fn [e]
                     (reset! text-state {:format :md
-                                        :value  (->md (-> e .-target .-value ))}))
+                                        :value  (->md (-> e .-target .-value))}))
        :value     (->html  @text-state)
        :style     {:resize "none"
                    :height "500px"
@@ -111,26 +111,12 @@
                   :border-radius    10}}
       "Copy HTML"]]
 
-
-
     [:div
      {:style {:flex         "1"
               :padding-left "2em"}}
      [:h2 "HTML Preview"]
      [:div {:style                   {:height "500px"}
             :dangerouslySetInnerHTML {:__html (->html  @text-state)}}]]]])
-
-
-
-
-
-
-
-
-
-
-
-
 
 (defn mount! []
   (reagent/render [app]
