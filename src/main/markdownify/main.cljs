@@ -102,7 +102,9 @@
                    :height "500px"
                    :width  "100%"}}]
      [:button
-      {:on-click #(copy-to-clipboard (->html  @text-state))
+      {:on-click (fn []
+                   (copy-to-clipboard (->html  @text-state))
+                   (flash "Markdown copied to clipboard"))
        :style    {:background-color :green
                   :padding          "1em"
                   :color            :white
