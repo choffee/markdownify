@@ -107,7 +107,7 @@
                   :padding          "1em"
                   :color            :white
                   :border-radius    10}}
-      "Copy Markdown"]]
+      "Copy HTML"]]
 
 
 
